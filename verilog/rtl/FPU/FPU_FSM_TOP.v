@@ -49,7 +49,7 @@
 `include "LZD_comb.v"
 */
 
-module FPU_FSM_TOP(vccd1,vssd1,r_Rx_Serial,clk,rst_l,FPU_hp_result);
+module FPU_FSM_TOP(vccd1,vssd1,r_Rx_Serial,clk,rst_l,FPU_sp_result);
 
 `ifdef USE_POWER_PINS
     inout vccd1;	// User area 1 1.8V supply
@@ -62,7 +62,7 @@ module FPU_FSM_TOP(vccd1,vssd1,r_Rx_Serial,clk,rst_l,FPU_hp_result);
     // FPU FSM 
     input clk,rst_l;
     
-    output [15:0] FPU_hp_result;
+    output [31:0] FPU_sp_result;
     // FPU FSM 
 
     wire o_Rx_DV;
@@ -88,11 +88,11 @@ module FPU_FSM_TOP(vccd1,vssd1,r_Rx_Serial,clk,rst_l,FPU_hp_result);
     wire [3:0]float_control;
     wire valid_execution;
     wire illegal_config;
-    wire [15:0] fs1_data,fs2_data,fs3_data;
+    wire [31:0] fs1_data,fs2_data,fs3_data;
     wire [2:0] fpu_pre,fpu_rounding;
     wire [23:0] sfpu_op;
     wire fpu_active,fpu_complete,fpu_complete_rd;
-    wire [15:0]fpu_result_1;
+    wire [31:0]fpu_result_1;
     wire dec_i0_rs1_en_d,dec_i0_rs2_en_d;
     wire [4:0]S_flag;
     wire IV_exception;
@@ -101,7 +101,7 @@ module FPU_FSM_TOP(vccd1,vssd1,r_Rx_Serial,clk,rst_l,FPU_hp_result);
 
 
 
-    assign FPU_hp_result = (rst_l == 1'b0) ? 16'h0000 : (fpu_complete_rd & Active_Process) ? fpu_result_rd_w[15:0] : (fpu_complete & ~fpu_complete_rd & Active_Process) ? fpu_result_1 : 16'h0000;
+    assign FPU_sp_result = (rst_l == 1'b0) ? 32'h00000000 : (fpu_complete_rd & Active_Process) ? fpu_result_rd_w[31:0] : (fpu_complete & ~fpu_complete_rd & Active_Process) ? fpu_result_1 : 32'h00000000;
     
     FPU_FSM FSM(
                 .clk(clk),

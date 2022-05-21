@@ -1,11 +1,11 @@
-module FPU_decode #(parameter FPLEN = 16)
+module FPU_decode #(parameter FPLEN = 32)
    (
    input 		clk,
    input 		rst_l,
    input [31:0] 	instr,
    input 		fpu_active,
    input 		fpu_complete,
-   input [FPLEN-1:0]fpu_result_1,
+   input [FPLEN-1:0]   fpu_result_1,
    output [2:0] 	scalar_control,
    output [4:0] 	rs1_address,
    output [4:0] 	rs2_address,
@@ -76,13 +76,13 @@ module FPU_decode #(parameter FPLEN = 16)
    
       assign illegal_instr = (rst_l == 1'b0) ? 1'b0 : ((fpu_active) & (control_signals[51] == 1'b0) & (~control_signals_r[51])) ? 1'b1 : 1'b0;
       
-      // For half precision
-      assign valid_execution = (rst_l == 1'b0) ? 1'b0 : (illegal_instr) ? 1'b0 : (fpu_active & control_signals[92] & control_signals_r[92] & ~control_signals[91]  & ~control_signals_r[91]) ? 1'b0 : (fpu_active & (control_signals[91] | control_signals_r[91])) ? 1'b1 : 1'b0; 
+      // For Single precision
+      assign valid_execution = (rst_l == 1'b0) ? 1'b0 : (illegal_instr) ? 1'b0 : (fpu_active & control_signals[92] & control_signals_r[92] & ~control_signals[89]  & ~control_signals_r[89]) ? 1'b0 : (fpu_active & (control_signals[89] | control_signals_r[89])) ? 1'b1 : 1'b0; 
       
       assign scalar_control = (rst_l == 1'b0) ? 3'b00 : control_signals[2:0];  // Contain the active signals for rs1, rs2, rd
       
-      // for half precision
-      assign illegal_config = (rst_l == 1'b0) ? 1'b0 : (fpu_active & (control_signals[89] | control_signals[90])) ? 1'b1 :  1'b0;
+      // for Single precision
+      assign illegal_config = (rst_l == 1'b0) ? 1'b0 : (fpu_active & (control_signals[91] | control_signals[90])) ? 1'b1 :  1'b0;
       
       // Scalar Register address
       assign rs1_address = (rst_l == 1'b0) ? 5'h00 : (valid_execution | control_signals[10]) ? instr[19:15] : 5'h00;

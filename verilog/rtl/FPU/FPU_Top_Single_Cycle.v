@@ -15,11 +15,11 @@
 
 module FPU_Top (Operand_A,Operand_B,Operand_C, clk,rst_l, frm, sfpu_op,vfpu_op,fpu_sel,FPU_resultant, S_Flags, Exception_flag, interupt_Pin,FPU_Result_rd,Operand_Int);
 
-parameter std= 15;
-parameter man = 9;
-parameter exp = 4;
-parameter Bias = 15 /*8'b01111111*/;
-parameter lzd = 3;
+parameter std= 31;
+parameter man = 22;
+parameter exp = 7;
+parameter Bias = 127 /*8'b01111111*/;
+parameter lzd = 4;
 
 
 //inputs

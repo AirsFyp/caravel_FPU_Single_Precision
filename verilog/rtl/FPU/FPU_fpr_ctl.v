@@ -15,7 +15,7 @@
 
 module FPU_fpr_ctl
 #(
-  parameter FPLEN = 16
+  parameter FPLEN = 32
  )  (
  
     input rden0,
@@ -51,7 +51,7 @@ module FPU_fpr_ctl
 genvar j;   
 generate   
    for (j=0; j<32; j=j+1)
-      rvdffe #(16) fprff (.*, .en(fpr_wr_en[j]), .din(fpr_in[j][FPLEN-1:0]), .dout(fpr_out[j][FPLEN-1:0]));
+      rvdffe #(32) fprff (.*, .en(fpr_wr_en[j]), .din(fpr_in[j][FPLEN-1:0]), .dout(fpr_out[j][FPLEN-1:0]));
 endgenerate
 
 

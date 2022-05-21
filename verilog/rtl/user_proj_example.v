@@ -71,7 +71,7 @@ module user_proj_example #(
     wire clk;
     wire rst;
     wire rx_i;
-    wire [15:0] FPU_hp_result;
+    wire [31:0] FPU_sp_result;
 
     wire [`MPRJ_IO_PADS-1:0] io_in;
     wire [`MPRJ_IO_PADS-1:0] io_out;
@@ -79,9 +79,11 @@ module user_proj_example #(
 
 
     // IO for input mode set 1 and for output mode set 0
+    assign io_oeb[4] = 1'b0;
     assign io_oeb[5] = 1'b1;
-    assign io_oeb[23:8] = 16'h0000;
-    assign io_out[23:8] = FPU_hp_result;
+    assign io_oeb[36:6] = 31'h00000000;
+    assign io_out[4] = FPU_sp_result[31];
+    assign io_out[36:6] = FPU_sp_result[30:0];
     
     // Uart Pin
     assign rx_i = (~la_oenb[1]) ? la_data_in[1] : io_in[5];
@@ -89,10 +91,10 @@ module user_proj_example #(
     // IRQ
     assign irq = 3'b000;	// Unused
 
-    // Ouptut at LA bits [31:16]
-    assign la_data_out[15:0] = 16'h0000;
-    assign la_data_out[31:16] = (&la_oenb[31:16]) ? FPU_hp_result : 16'h0000;
-    assign la_data_out[127:32] = {(127-BITS){1'b0}};
+    // Ouptut at LA bits [63:32]
+    assign la_data_out[31:0] = 32'h00000000;
+    assign la_data_out[63:32] = (&la_oenb[63:32]) ? FPU_sp_result : 32'h00000000;
+    assign la_data_out[127:64] = {(127-64){1'b0}};
     
     // Assuming LA probes [65:64] are for controlling the count clk & reset  
     assign clk = (~la_oenb[64]) ? la_data_in[64] : wb_clk_i;
@@ -100,7 +102,7 @@ module user_proj_example #(
 
    
     // Initiation of TOP Module
-    FPU_FSM_TOP FPU_Half_Precision_Top (
+    FPU_FSM_TOP FPU_Single_Precision_Top (
     					`ifdef USE_POWER_PINS
     					   .vccd1(vccd1),	// User area 1 1.8V supply
     					   .vssd1(vssd1),	// User area 1 digital ground
@@ -108,7 +110,7 @@ module user_proj_example #(
     					  .clk(clk),
     					  .rst_l(rst),
     					  .r_Rx_Serial(rx_i),
-    					  .FPU_hp_result(FPU_hp_result)
+    					  .FPU_sp_result(FPU_sp_result)
     					  );
 
 endmodule

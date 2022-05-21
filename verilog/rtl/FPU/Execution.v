@@ -1,14 +1,14 @@
 module Execution(clk,rst_l,RS1_d,RS2_d,result,Flag_ADDI,Flag_LI,Activation_Signal,Flag_Reset,fpu_active,illegal_config,valid_execution,fs1_data,fs2_data,fs3_data,sfpu_op,fpu_pre,fpu_rounding,float_control,fpu_result_1,S_flag,dec_i0_rs1_en_d,dec_i0_rs2_en_d,IV_exception,fpu_complete,fpu_sel,fpu_result_rd_w,fpu_complete_rd);
     input clk,rst_l,Flag_ADDI,Flag_LI,Flag_Reset,fpu_active,illegal_config,valid_execution,dec_i0_rs1_en_d,dec_i0_rs2_en_d;
     input [31:0]RS1_d,RS2_d;
-    input [15:0]fs1_data,fs2_data,fs3_data;
+    input [31:0]fs1_data,fs2_data,fs3_data;
     input [23:0]sfpu_op;
     input [2:0]fpu_pre,fpu_rounding;
     input [3:0]float_control;
     input [2:0]fpu_sel;
     output reg[31:0]result;
     output reg Activation_Signal;
-    output [15:0]fpu_result_1;
+    output [31:0]fpu_result_1;
     output [4:0]S_flag;
     output IV_exception;
     output fpu_complete;

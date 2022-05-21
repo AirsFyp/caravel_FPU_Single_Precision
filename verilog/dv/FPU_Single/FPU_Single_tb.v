@@ -63,7 +63,7 @@ module FPU_Single_tb();
 	initial begin
 	    wait(mprj_ready == 1'b1)
             // Observe Output pins [23:8] for Fmove
-            /*
+            
             wait(mprj_io_0 == 16'h4000);
             wait(mprj_io_0 == 16'h4020);
             wait(mprj_io_0 == 16'h4060);
@@ -72,7 +72,7 @@ module FPU_Single_tb();
             wait(mprj_io_0 == 16'h40d0);
             wait(mprj_io_0 == 16'hC158);
             wait(mprj_io_0 == 16'hC178);
-            */
+            
             // Observe Output pins [23:8] for Fsign and I2F
             /*wait(mprj_io_0 == 16'h449A);
             wait(mprj_io_0 == 16'h3042);

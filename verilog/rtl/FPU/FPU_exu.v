@@ -1,4 +1,4 @@
-module FPU_exu #(parameter FPLEN = 16) (
+module FPU_exu #(parameter FPLEN = 32) (
 input clk,
 input rst_l,
 input scan_mode,
@@ -32,7 +32,6 @@ wire [FPLEN-1:0]           fs2_d;
 wire [FPLEN-1:0]           fs3_d;
 //wire [FPLEN-1:0]           fpu_result_exu;
 wire [FPLEN-1:0]           fpu_result_top;
-wire [FPLEN-1:0]           fpu_result_rx;
 wire [4:0] fpu_flags;
 wire [31:0]FPU_Result_rd,Operand_Int;
 
@@ -75,12 +74,12 @@ wire [31:0]FPU_Result_rd,Operand_Int;
 	end
 	
 	// FPU operands
-	assign fs1_d[15:0] =  	(rst_l == 1'b0) ?  {FPLEN{1'b0}} : (({FPLEN{valid_execution &  dec_i0_rs1_en_d &                  ~float_control[0]}} & gpr_i0_rs1_d[31:0]     ) |
+	assign fs1_d[31:0] =  	(rst_l == 1'b0) ?  {FPLEN{1'b0}} : (({FPLEN{valid_execution &  dec_i0_rs1_en_d &                  ~float_control[0]}} & gpr_i0_rs1_d[31:0]     ) |
 								     ({FPLEN{valid_execution & ~dec_i0_rs1_en_d & float_control[0]                  }} & fs1_data               ));
 	assign Operand_Int = (rst_l == 1'b0) ? 32'h00000000 : (({32{valid_execution &  dec_i0_rs1_en_d &                  ~float_control[0]}} & gpr_i0_rs1_d[31:0]     )) ;
-	assign fs2_d[15:0] =  	(rst_l == 1'b0) ? {FPLEN{1'b0}} : (({FPLEN{valid_execution & float_control[1] }} & fs2_data       ));
+	assign fs2_d[31:0] =  	(rst_l == 1'b0) ? {FPLEN{1'b0}} : (({FPLEN{valid_execution & float_control[1] }} & fs2_data       ));
 	
-	assign fs3_d[15:0] =  	(rst_l == 1'b0) ? {FPLEN{1'b0}} : (({FPLEN{valid_execution & float_control[2] }} & fs3_data       ));
+	assign fs3_d[31:0] =  	(rst_l == 1'b0) ? {FPLEN{1'b0}} : (({FPLEN{valid_execution & float_control[2] }} & fs3_data       ));
 								    
 					
 	// FPU Top Module
