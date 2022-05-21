@@ -62,34 +62,30 @@ module FPU_Single_tb();
 
 	initial begin
 	    wait(mprj_ready == 1'b1)
-            // Observe Output pins [23:8] for Fmove
-            
-            wait(mprj_io_0 == 16'h4000);
-            wait(mprj_io_0 == 16'h4020);
-            wait(mprj_io_0 == 16'h4060);
-            wait(mprj_io_0 == 16'h4090);
-            wait(mprj_io_0 == 16'h40b0);
-            wait(mprj_io_0 == 16'h40d0);
-            wait(mprj_io_0 == 16'hC158);
-            wait(mprj_io_0 == 16'hC178);
-            
-            // Observe Output pins [23:8] for Fsign and I2F
-            /*wait(mprj_io_0 == 16'h449A);
-            wait(mprj_io_0 == 16'h3042);
-            wait(mprj_io_0 == 16'h491E);
-            wait(mprj_io_0 == 16'hDA92);
-            wait(mprj_io_0 == 16'h5CB0);
-            wait(mprj_io_0 == 16'h5CD9);
-            wait(mprj_io_0 == 16'h5F09);
-            wait(mprj_io_0 == 16'hBD78);
-            wait(mprj_io_0 == 16'h449A);
-            wait(mprj_io_0 == 16'h744A);
-            wait(mprj_io_0 == 16'h7AE6);
-            wait(mprj_io_0 == 16'h7582);
-            wait(mprj_io_0 == 16'h7AE4);
-            wait(mprj_io_0 == 16'h7208);
-            wait(mprj_io_0 == 16'h7AE7);
+            // Observe Output pins for Fmove
+            /*
+            wait(mprj_io_0 == 32'h40B60EBF);
+            wait(mprj_io_0 == 32'h4208ED91);
+            wait(mprj_io_0 == 32'h380FDD58);
+            wait(mprj_io_0 == 32'hBCA75DB8);
             */
+            // Observe Output pins [23:8] for Fsign and I2F
+            wait(mprj_io_0 == 32'h4208ED91);
+            wait(mprj_io_0 == 32'h70ADD2F2);
+            wait(mprj_io_0 == 32'hC63C087B);
+            wait(mprj_io_0 == 32'hC3F7999A);
+            wait(mprj_io_0 == 32'h4147EB85);
+            wait(mprj_io_0 == 32'hBB195AAF);
+            wait(mprj_io_0 == 32'hBCA75DB8);
+            wait(mprj_io_0 == 32'h40B60EBF);
+            wait(mprj_io_0 == 32'h4E816C1D);
+            wait(mprj_io_0 == 32'h4E8411DB);
+            wait(mprj_io_0 == 32'h4E7ACCCD);
+            wait(mprj_io_0 == 32'h4F3CA75E);
+            wait(mprj_io_0 == 32'hCE77DA8F);
+            wait(mprj_io_0 == 32'h4F43F79A);
+            wait(mprj_io_0 == 32'hCE651A10);
+            
             
             $display("MPRJ-IO state = %h", mprj_io_0[31:0]);  
 		
