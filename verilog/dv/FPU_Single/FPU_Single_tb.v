@@ -107,7 +107,7 @@ module FPU_Single_tb();
             wait(mprj_io_0 == 32'h380FDD58);
             */
             // Observe Output pins for F2I and fclass
-            
+            /*
             wait(mprj_io_0 == 32'h00000022);
             wait(mprj_io_0 == 32'h00000002);
             wait(mprj_io_0 == 32'hFFFFFFFB);
@@ -122,7 +122,18 @@ module FPU_Single_tb();
             wait(mprj_io_0 == 32'h00000002);
             wait(mprj_io_0 == 32'h00000040);
             wait(mprj_io_0 == 32'h00000002);
-          
+            */
+            // Observe Output pins for Fmul
+         
+            wait(mprj_io_0 == 32'h4342C190);
+            wait(mprj_io_0 == 32'hC128167B);
+            wait(mprj_io_0 == 32'hCD883D35);
+            wait(mprj_io_0 == 32'hC5D1D74D);
+            wait(mprj_io_0 == 32'hC40EAAFC);
+            wait(mprj_io_0 == 32'h8292A6E7);
+            wait(mprj_io_0 == 32'hBA56B228);
+            wait(mprj_io_0 == 32'hB53C1C1E);
+           
             
             $display("MPRJ-IO state = %h", mprj_io_0[31:0]);  
 		

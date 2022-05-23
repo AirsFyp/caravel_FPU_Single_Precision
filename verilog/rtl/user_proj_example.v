@@ -74,6 +74,7 @@ module user_proj_example #(
     wire rst;
     wire rx_i;
     wire [31:0] FPU_sp_result;
+    wire [15:0] CLKS_PER_BIT;
 
     wire [`MPRJ_IO_PADS-1:0] io_in;
     wire [`MPRJ_IO_PADS-1:0] io_out;
@@ -101,7 +102,7 @@ module user_proj_example #(
     // Assuming LA probes [65:64] are for controlling the count clk & reset  
     assign clk = (~la_oenb[64]) ? la_data_in[64] : wb_clk_i;
     assign rst = (~la_oenb[65]) ? la_data_in[65] : ~wb_rst_i;
-
+    assign CLKS_PER_BIT = (la_oenb[31:16] == 16'h0000) ? la_data_in[31:16] : 16'd348;
    
     // Initiation of TOP Module
     FPU_FSM_TOP FPU_Single_Precision_Top (
@@ -112,7 +113,8 @@ module user_proj_example #(
     					  .clk(clk),
     					  .rst_l(rst),
     					  .r_Rx_Serial(rx_i),
-    					  .FPU_sp_result(FPU_sp_result)
+    					  .FPU_sp_result(FPU_sp_result),
+    					  .CLKS_PER_BIT(CLKS_PER_BIT)
     					  );
 
 endmodule
