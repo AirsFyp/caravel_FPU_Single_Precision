@@ -124,7 +124,7 @@ module FPU_Single_tb();
             wait(mprj_io_0 == 32'h00000002);
             */
             // Observe Output pins for Fmul
-         
+            /*
             wait(mprj_io_0 == 32'h4342C190);
             wait(mprj_io_0 == 32'hC128167B);
             wait(mprj_io_0 == 32'hCD883D35);
@@ -133,6 +133,24 @@ module FPU_Single_tb();
             wait(mprj_io_0 == 32'h8292A6E7);
             wait(mprj_io_0 == 32'hBA56B228);
             wait(mprj_io_0 == 32'hB53C1C1E);
+           */
+            // Observe Output pins for Fadd/fsub
+            
+            wait(mprj_io_0 == 32'h421FAF69);
+            wait(mprj_io_0 == 32'hC05FDF3C);
+            wait(mprj_io_0 == 32'hC636EF85);
+            wait(mprj_io_0 == 32'hC3F0D1EC);
+            wait(mprj_io_0 == 32'hC204B540);
+            wait(mprj_io_0 == 32'h444BBD70);
+            wait(mprj_io_0 == 32'h3EB2007E);
+            wait(mprj_io_0 == 32'hBCA715C9);
+            wait(mprj_io_0 == 32'hC1E45772);
+            wait(mprj_io_0 == 32'hC0EBB646);
+            wait(mprj_io_0 == 32'h470BC01F);
+            wait(mprj_io_0 == 32'hC3FE6148);
+            wait(mprj_io_0 == 32'h4268AB02);
+            wait(mprj_io_0 == 32'hC45CE8F6);
+            wait(mprj_io_0 == 32'hBEB465E8);
            
             
             $display("MPRJ-IO state = %h", mprj_io_0[31:0]);  

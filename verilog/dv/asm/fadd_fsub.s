@@ -20,37 +20,37 @@
 _start:
 
 
-     li x5, 0x40B60EBF
+     li x5, 0x40B60EBF // 1
      fmv.w.x f0, x5
-     li x5, 0x4208ED91
+     li x5, 0x4208ED91 // 2
      fmv.w.x f1, x5
-     li x5, 0x3FF78D50
+     li x5, 0x3FF78D50 // 3
      fmv.w.x f2, x5
-     li x5, 0xC0ADD2F2
+     li x5, 0xC0ADD2F2 // 4
      fmv.w.x f3, x5
-     li x5, 0xC6B97C00
+     li x5, 0xC6B97C00 // 5
      fmv.w.x f4, x5
-     li x5, 0x463C087B
+     li x5, 0x463C087B // 6
      fmv.w.x f5, x5
-     li x5, 0x4158F5C3
+     li x5, 0x4158F5C3 // 7
      fmv.w.x f6, x5
-     li x5, 0xC3F7999A
+     li x5, 0xC3F7999A //8
      fmv.w.x f7, x5
-     li x5, 0xC236B021
+     li x5, 0xC236B021 // 9
      fmv.w.x f8, x5
-     li x5, 0x4147EB85
+     li x5, 0x4147EB85 // 10
      fmv.w.x f9, x5
-     li x5, 0x44545333
+     li x5, 0x44545333 // 11
      fmv.w.x f10, x5
-     li x5, 0xC2095C29
+     li x5, 0xC2095C29 // 12
      fmv.w.x f11, x5
-     li x5, 0x3EB33333
+     li x5, 0x3EB33333 // 13
      fmv.w.x f12, x5
-     li x5, 0xBB195AAF
+     li x5, 0xBB195AAF //14
      fmv.w.x f13, x5
-     li x5, 0x380FDD58
+     li x5, 0x380FDD58 //15
      fmv.w.x f14, x5
-     li x5, 0xBCA75DB8
+     li x5, 0xBCA75DB8 //16
      fmv.w.x f15, x5
      fadd.s f16, f1, f0
      fadd.s f17, f3, f2
